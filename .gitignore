@@ -1,0 +1,29 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Compiled files
+*.class
+*.exe
+*.out
+*.o
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Environment files
+.env
+.env.local
+
+# Dependency folders
+node_modules/
+vendor/
+
+# Build output
+dist/
+build/

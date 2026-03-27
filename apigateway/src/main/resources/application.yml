@@ -1,0 +1,52 @@
+server:
+<<<<<<< HEAD
+  port: 8090
+=======
+  port: 8080
+>>>>>>> ee799af2c2111e0cbef721801476830bcdf125c2
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+<<<<<<< HEAD
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+            maxAge: 3600
+
+=======
+>>>>>>> ee799af2c2111e0cbef721801476830bcdf125c2
+      routes:
+        - id: accountidentityservice
+          uri: lb://ACCOUNTIDENTITYSERVICE
+          predicates:
+            - Path=/auth/**,/accounts/**
+<<<<<<< HEAD
+
+        - id: transaction-routes
+          uri: lb://TRANSACTIONSERVICE
+          predicates:
+            - Path=/transactions/**
+
+        - id: auditservice
+          uri: lb://AUDITSERVICE
+          predicates:
+            - Path=/audit/**
+=======
+>>>>>>> ee799af2c2111e0cbef721801476830bcdf125c2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

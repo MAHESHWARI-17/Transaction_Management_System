@@ -1,0 +1,62 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: TRANSACTIONSERVICE
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/transaction_service_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+
+account-service:
+  url: http://localhost:8090
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+app:
+  # Daily transaction count limit per account (no cap on amount)
+  daily-transaction-limit: 16
+
+  # New recipient threshold in hours
+  # If recipient account was added < 24 hrs ago, max transfer = 1,00,000
+  new-recipient-threshold-hours: 24
+  new-recipient-transfer-limit: 100000
+
+  # Transaction fee tiers
+  # amount < 10,000 → 2.5% fee
+  # amount >= 10,000 → 5% fee
+  fee-tier-threshold: 10000
+  fee-rate-below-threshold: 2.5
+  fee-rate-above-threshold: 5.0
+
+audit-service:
+  url: http://localhost:8083
+  internal-api-key: internal-service-secret-key
